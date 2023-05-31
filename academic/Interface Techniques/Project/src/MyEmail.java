@@ -6,7 +6,8 @@ import org.simplejavamail.mailer.config.TransportStrategy;
 
 public class MyEmail {
 	// Object to hold private password information
-	private static Password pswd = new Password();
+	//private static Password pswd = new Password();
+	//private static Password pswd = new Password();
 
 	public MyEmail() {
 		// Constructor - nothing needed
@@ -15,7 +16,8 @@ public class MyEmail {
 	public void notification(String msg, boolean sms) {
 		// Set information, change as needed
 		String hostUsername = "zzApotheosis@gmail.com";
-		String hostPassword = pswd.getPassword0();
+		//String hostPassword = pswd.getPassword0();
+		String hostPassword = "pswd.getPassword0()";
 		String fromName = "Raspberry Pi";
 		String fromAddress = "Rasp@berry.pi";
 		String toName0 = "Steven";
@@ -55,7 +57,8 @@ public class MyEmail {
 			// Compose SMS notification
 			Email smsMsg = new Email();
 			smsMsg.setFromAddress(fromName, fromAddress);
-			smsMsg.addRecipient("Steven", pswd.getAddr0(), RecipientType.TO);
+			//smsMsg.addRecipient("Steven", pswd.getAddr0(), RecipientType.TO);
+			smsMsg.addRecipient("Steven", "pswd.getAddr0()", RecipientType.TO);
 			smsMsg.setSubject(subject);
 			smsMsg.setText("Check your email for details.");
 

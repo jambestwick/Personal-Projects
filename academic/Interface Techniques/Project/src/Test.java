@@ -17,7 +17,7 @@ import com.pi4j.util.Console;
 
 public class Test {
 
-	private static Password pswd = new Password();
+	//private static Password pswd = new Password();
 
 	private static final GpioController gpio = GpioFactory.getInstance();
 
@@ -64,7 +64,8 @@ public class Test {
 	private static void sendEmail() {
 		// Set information, change as needed
 		String hostUsername = "zzApotheosis@gmail.com";
-		String hostPassword = pswd.getPassword0();
+		//String hostPassword = pswd.getPassword0();
+		String hostPassword = "pswd.getPassword0()";
 		String fromName = "Raspberry Pi";
 		String fromAddress = "Rasp@berry.pi";
 		System.out.print("Set Recipient Name: ");

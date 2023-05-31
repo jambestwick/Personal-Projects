@@ -11,9 +11,9 @@ public class RaspRC522 {
 	private int Speed = 500000;
 	private int SPI_Channel = 0;
 
-	private final int MAX_LEN = 16; // �����ֽ���
+	private final int MAX_LEN = 16; // ?????????
 
-	// RC522������
+	// RC522??????
 	public static final byte PCD_IDLE = 0x00;
 	public static final byte PCD_AUTHENT = 0x0E;
 	public static final byte PCD_RECEIVE = 0x08;
@@ -22,7 +22,7 @@ public class RaspRC522 {
 	public static final byte PCD_RESETPHASE = 0x0F;
 	public static final byte PCD_CALCCRC = 0x03;
 
-	// PICC������
+	// PICC??????
 	public static final byte PICC_REQIDL = 0x26;
 	public static final byte PICC_REQALL = 0x52;
 	public static final byte PICC_ANTICOLL = (byte) 0x93;
@@ -37,12 +37,12 @@ public class RaspRC522 {
 	public static final byte PICC_TRANSFER = (byte) 0xB0;
 	public static final byte PICC_HALT = 0x50;
 
-	// ����״̬
+	// ??????
 	public static final int MI_OK = 0;
 	public static final int MI_NOTAGERR = 1;
 	public static final int MI_ERR = 2;
 
-	// RC522�Ĵ�����ַ
+	// RC522????????
 	public static final byte Reserved00 = 0x00;
 	public static final byte CommandReg = 0x01;
 	public static final byte CommIEnReg = 0x02;
@@ -194,10 +194,10 @@ public class RaspRC522 {
 		ClearBitMask(TxControlReg, (byte) 0x03);
 	}
 
-	// back_data-�������Length=16;
-	// back_data-�������
-	// back_bits-���ر�����
-	// backLen-�����ֽ���
+	// back_data-????????Length=16;
+	// back_data-???????
+	// back_bits-?????????
+	// backLen-?????????
 	private int Write_Card(byte command, byte[] data, int dataLen, byte[] back_data, int[] back_bits, int[] backLen) {
 		int status = MI_ERR;
 		byte irq = 0, irq_wait = 0, lastBits = 0;
@@ -263,7 +263,7 @@ public class RaspRC522 {
 		return status;
 	}
 
-	public int Request(byte req_mode, int[] back_bits) // ����Ϊ1�ֽ�����
+	public int Request(byte req_mode, int[] back_bits) // ?????1???????
 	{
 		int status;
 		byte tagType[] = new byte[1];
@@ -285,10 +285,10 @@ public class RaspRC522 {
 
 	// Anti-collision detection.
 	// Returns tuple of (error state, tag ID).
-	// back_data-5�ֽ� 4�ֽ�tagid+1�ֽ�У��
+	// back_data-5??? 4???tagid+1???У??
 	public int AntiColl(byte[] back_data) {
 		int status;
-		byte[] serial_number = new byte[2]; // 2�ֽ�����
+		byte[] serial_number = new byte[2]; // 2???????
 		int serial_number_check = 0;
 		int backLen[] = new int[1];
 		int back_bits[] = new int[1];
@@ -314,7 +314,7 @@ public class RaspRC522 {
 		return status;
 	}
 
-	// CRCֵ����data[]������ֽ�
+	// CRC?????data[]????????
 	private void Calculate_CRC(byte[] data) {
 		int i, n;
 		ClearBitMask(DivIrqReg, (byte) 0x04);
@@ -334,8 +334,8 @@ public class RaspRC522 {
 		data[data.length - 1] = Read_RC522(CRCResultRegM);
 	}
 
-	// uid-5�ֽ�����,������к�
-	// ��ֵ�Ǵ�С
+	// uid-5???????,??????к?
+	// ??????С
 	public int Select_Tag(byte[] uid) {
 		int status;
 		byte data[] = new byte[9];
@@ -360,7 +360,7 @@ public class RaspRC522 {
 	// Authenticates to use specified block address. Tag must be selected using select_tag(uid) before auth.
 	// auth_mode-RFID.auth_a or RFID.auth_b
 	// block_address- used to authenticate
-	// key-list or tuple(����) with six bytes key
+	// key-list or tuple(????) with six bytes key
 	// uid-list or tuple with four bytes tag ID
 	public int Auth_Card(byte auth_mode, byte block_address, byte[] key, byte[] uid) {
 		int status;
@@ -456,7 +456,7 @@ public class RaspRC522 {
 		return Write(Sector2BlockAddress(sector, block), data);
 	}
 
-	// ����1K�ֽ�,64������
+	// ????1K???,64??????
 	public byte[] DumpClassic1K(byte[] key, byte[] uid) {
 		int i, status;
 		byte[] data = new byte[1024];
